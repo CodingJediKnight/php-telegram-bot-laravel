@@ -32,6 +32,8 @@ class CreateMessageTable extends Migration
             )->nullable()->comment('For text messages, special entities like usernames, URLs, bot commands, etc. that appear in the text');
             $table->text('audio', 65535)->nullable()->comment('Audio object. Message is an audio file, information about the file');
             $table->text('document', 65535)->nullable()->comment('Document object. Message is a general file, information about the file');
+            $table->text('animation', 65535)->nullable()->comment('Message is an animation, information about the animation');
+            $table->text('game', 65535)->nullable()->comment('Message is a game, information about the game.');
             $table->text('photo', 65535)->nullable()->comment('Array of PhotoSize objects. Message is a photo, available sizes of the photo');
             $table->text('sticker', 65535)->nullable()->comment('Sticker object. Message is a sticker, information about the sticker');
             $table->text('video', 65535)->nullable()->comment('Video object. Message is a video, information about the video');
@@ -56,6 +58,7 @@ class CreateMessageTable extends Migration
             $table->bigInteger('migrate_from_chat_id')->nullable()->index('migrate_from_chat_id')->comment('Migrate from chat identifier. The supergroup has been migrated from a group with the specified identifier');
             $table->text('pinned_message', 65535)->nullable()->comment('Message object. Specified message was pinned');
             $table->text('connected_website', 65535)->nullable()->comment('The domain name of the website on which the user has logged in.');
+            $table->text('passport_data', 65535)->nullable()->comment('Telegram Passport data');
             $table->primary(['chat_id', 'id']);
             $table->index(['reply_to_chat', 'reply_to_message'], 'reply_to_chat_2');
         });
